@@ -90,6 +90,11 @@ export const {
   selectById: selectTodoById,
 } = todosAdapter.getSelectors((state) => state.todos)
 
+// manual selectors
+export const selecteAllTodoIds = state => Object.values(state.todos.entities).map(todo => todo.id)
+export const selecteAllTodos = state => Object.values(state.todos.entities)
+export const selectTodoByIdId = (state, id) => Object.values(state.todos.entities).find(todo => todo.id === id);
+
 export const selectTodoIds = createSelector(
   // First, pass one or more "input selector" functions:
   selectTodos,
