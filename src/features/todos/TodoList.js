@@ -1,14 +1,20 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import TodoListItem from './TodoListItem'
-
-import { selectFilteredTodoIds } from './todosSlice'
+import { fetchTodos, selectFilteredTodoIds } from './todosSlice'
 
 const TodoList = () => {
   const todoIds = useSelector(selectFilteredTodoIds)
-  const loadingStatus = useSelector((state) => state.todos.status)
+  const status = useSelector((state) => state.todos.status)
+  const dispatch = useDispatch()
 
-  if (loadingStatus === 'loading') {
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchTodos())
+    }
+  }, [dispatch, status])
+
+  if (status === 'loading') {
     return (
       <div className="todo-list">
         <div className="loader" />

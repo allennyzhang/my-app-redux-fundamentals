@@ -69,4 +69,4 @@ const TodoListItem = ({ id }) => {
   )
 }
 
-export default TodoListItem
+export default React.memo(TodoListItem)

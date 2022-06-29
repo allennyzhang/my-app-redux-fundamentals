@@ -68,7 +68,7 @@ const todosSlice = createSlice({
       })
       .addCase(fetchTodos.fulfilled, (state, action) => {
         todosAdapter.setAll(state, action.payload)
-        state.status = 'idle'
+        state.status = 'succeeded'
       })
       .addCase(saveNewTodo.fulfilled, todosAdapter.addOne)
   },
